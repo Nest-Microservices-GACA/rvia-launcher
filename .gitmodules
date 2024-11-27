@@ -22,3 +22,6 @@
 [submodule "rviacp-ms"]
 	path = rviacp-ms
 	url = https://github.com/Nest-Microservices-GACA/RVIACP.git
+[submodule "rviaco-ms"]
+	path = rviaco-ms
+	url = https://github.com/Nest-Microservices-GACA/RVIACO.git
