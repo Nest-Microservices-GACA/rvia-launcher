@@ -1,3 +1,6 @@
 [submodule "client-gateway"]
 	path = client-gateway
 	url = https://github.com/Nest-Microservices-GACA/client-gateway.git
+[submodule "usuarios-ms"]
+	path = usuarios-ms
+	url = https://github.com/Nest-Microservices-GACA/Usuarios-microservicio.git
