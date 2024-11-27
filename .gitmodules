@@ -10,3 +10,6 @@
 [submodule "proyectos-ms"]
 	path = proyectos-ms
 	url = https://github.com/Nest-Microservices-GACA/aplicaciones-ms.git
+[submodule "rviami-ms"]
+	path = rviami-ms
+	url = https://github.com/Nest-Microservices-GACA/RVIAMI.git
