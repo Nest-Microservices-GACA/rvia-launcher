@@ -6,7 +6,7 @@ services:
   nats-server:
     image: nats:latest
     ports:
-      - "8222:8222"
+      - "4222:4222"
     
 
   client-gateway:
@@ -87,6 +87,11 @@ services:
       - ./rviasa-ms/src:/usr/src/app/src
     command: npm run start:dev
     environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
       - PORT=3006
       - NATS_SERVERS=${NATS_SERVERS}
       - SECRET_KEY=${SECRET_KEY}
@@ -99,6 +104,11 @@ services:
       - ./rviaca-ms/src:/usr/src/app/src
     command: npm run start:dev
     environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
       - PORT=3007
       - NATS_SERVERS=${NATS_SERVERS}
       - SECRET_KEY=${SECRET_KEY}
@@ -113,6 +123,11 @@ services:
     command: npm run start:dev
     environment:
       - PORT=3008
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
       - NATS_SERVERS=${NATS_SERVERS}
       - SECRET_KEY=${SECRET_KEY}
       - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
