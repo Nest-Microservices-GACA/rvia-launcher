@@ -31,3 +31,6 @@
 [submodule "lenguajes-ms"]
 	path = lenguajes-ms
 	url = https://github.com/Nest-Microservices-GACA/lenguajes-microservicios.git
+[submodule "rviadoc-ms"]
+	path = rviadoc-ms
+	url = https://github.com/Nest-Microservices-GACA/RVIADOC.git
