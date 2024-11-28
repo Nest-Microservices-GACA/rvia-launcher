@@ -3,7 +3,6 @@ version: '3'
 
 services:
 
-  
   nats-server:
     image: nats:latest
     ports:
@@ -19,7 +18,7 @@ services:
     command: npm run start:dev
     environment:
       - PORT=3001
-      - NATS_SERVERS=nats://nats-server:4222
+      - NATS_SERVERS=${NATS_SERVERS}
 
   usuarios-ms:
     build: ./usuarios-ms
@@ -28,35 +27,142 @@ services:
     command: npm run start:dev
     environment:
       - PORT=3002
-      - NATS_SERVERS=nats://nats-server:4222
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
 
-  
-  # Orders MS
-  orders-ms:
-    depends_on:
-      - orders-db
-    build: ./orders-ms
+  auth-ms:
+    build: ./auth-ms
     volumes:
-      - ./orders-ms/src:/usr/src/app/src
+      - ./auth-ms/src:/usr/src/app/src
     command: npm run start:dev
     environment:
-      - PORT=3002
-      - DATABASE_URL=postgresql://postgres:123456@orders-db:5432/ordersdb?schema=public
-      - NATS_SERVERS=nats://nats-server:4222
-
-
-
-  # Orders DB
-  orders-db:
-    container_name: orders_database
-    image: postgres:16.2
-    restart: always
+      - PORT=3003
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+  
+  aplicaciones-ms:
+    build: ./proyectos-ms
     volumes:
-      - ./orders-ms/postgres:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+      - ./proyectos-ms/src:/usr/src/app/src
+    command: npm run start:dev
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123456
-      - POSTGRES_DB=ordersdb
+      - APP_MS_PORT=3004
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+      - PATH_PROJECTS=${PATH_PROJECTS}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
 
+
+  rviami-ms:
+    build: ./rviami-ms
+    volumes:
+      - ./rviami-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3005
+      - NATS_SERVERS=${NATS_SERVERS}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
+
+  rviasa-ms:
+    build: ./rviasa-ms
+    volumes:
+      - ./rviasa-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3006
+      - NATS_SERVERS=${NATS_SERVERS}
+      - SECRET_KEY=${SECRET_KEY}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
+
+  rviaca-ms:
+    build: ./rviaca-ms
+    volumes:
+      - ./rviaca-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3007
+      - NATS_SERVERS=${NATS_SERVERS}
+      - SECRET_KEY=${SECRET_KEY}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
+
+
+  rviacp-ms:
+    build: ./rviacp-ms
+    volumes:
+      - ./rviacp-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3008
+      - NATS_SERVERS=${NATS_SERVERS}
+      - SECRET_KEY=${SECRET_KEY}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
+
+  rviaco-ms:
+    build: ./rviaco-ms
+    volumes:
+      - ./rviaco-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3009
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+
+  rviaac-ms:
+    build: ./rviaac-ms
+    volumes:
+      - ./rviaac-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3010
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
+
+
+  lenguajes-ms:
+    build: ./lenguajes-ms
+    volumes:
+      - ./lenguajes-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3011
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
