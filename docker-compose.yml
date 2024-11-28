@@ -181,3 +181,54 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
       - RVIA_PATH=${RVIA_PATH}
+
+  rviadoc-ms:
+    build: ./rviadoc-ms
+    volumes:
+      - ./rviadoc-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3011
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
+
+  rviacal-ms:
+    build: ./rviacal-ms
+    volumes:
+      - ./rviacal-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3011
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
+
+  rviaprodoc-ms:
+    build: ./rviaprodoc-ms
+    volumes:
+      - ./rviaprodoc-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3011
+      - NATS_SERVERS=${NATS_SERVERS}
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+      - RVIA_ENVIRONMENT=${RVIA_ENVIRONMENT}
+      - RVIA_PATH=${RVIA_PATH}
